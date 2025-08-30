@@ -182,6 +182,10 @@ class _CampaignCreatorPageState extends State<CampaignCreatorPage> {
                         onChanged: (value) {
                           setState(() {
                             selectedActionType = value!;
+                            if (selectedActionType.hintValue != null) {
+                              actionDataController.text =
+                                  selectedActionType.hintValue!;
+                            }
                           });
                         },
                         decoration: const InputDecoration(
