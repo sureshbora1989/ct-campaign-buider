@@ -41,12 +41,12 @@ class _CampaignCreatorPageState extends State<CampaignCreatorPage> {
         imageController.text = entry["image_url"] ?? "";
         ctEventController.text = entry["ct_event"] ?? "";
         final action = entry["action"] as Map<String, dynamic>? ?? {};
-        final actionTypeName = action["type"];
+        final actionTypeName = action["mobile_action"];
         selectedActionType = actionTypes.firstWhere(
           (a) => a.name == actionTypeName,
           orElse: () => actionTypes.first,
         );
-        actionDataController.text = action["data"] ?? "";
+        actionDataController.text = action["mobile_data"] ?? "";
         urlEventController.text = action["web_action"] ?? "";
       }
     }
@@ -54,10 +54,10 @@ class _CampaignCreatorPageState extends State<CampaignCreatorPage> {
 
   void addOrUpdateEntry() {
     final action = {
-      "type": selectedActionType.name,
+      "mobile_action": selectedActionType.name,
       if (selectedActionType.requiresData &&
           actionDataController.text.isNotEmpty)
-        "data": actionDataController.text,
+        "mobile_data": actionDataController.text,
       if (urlEventController.text.isNotEmpty)
         "web_action": urlEventController.text,
     };
@@ -189,7 +189,7 @@ class _CampaignCreatorPageState extends State<CampaignCreatorPage> {
                           });
                         },
                         decoration: const InputDecoration(
-                          labelText: "Action Type",
+                          labelText: "Mobile Action Type",
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -197,7 +197,7 @@ class _CampaignCreatorPageState extends State<CampaignCreatorPage> {
                         TextField(
                           controller: actionDataController,
                           decoration: const InputDecoration(
-                            labelText: "Action Data",
+                            labelText: "Mobile Action Data",
                           ),
                         ),
                       const SizedBox(height: 16),
@@ -241,7 +241,7 @@ class _CampaignCreatorPageState extends State<CampaignCreatorPage> {
                                         ),
                                         title: Text(entry["ct_event"] ?? ""),
                                         subtitle: Text(
-                                          "Action: ${action["type"]}${action["data"] != null ? " → ${action["data"]}" : ""}",
+                                          "Action: ${action["mobile_action"]}${action["mobile_data"] != null ? " → ${action["mobile_data"]}" : ""}",
                                         ),
                                         trailing: IconButton(
                                           icon: const Icon(

@@ -13,6 +13,11 @@ final List<ActionType> actionTypes = [
   ActionType(name: "fund-details", requiresData: true),
   ActionType(name: "explore-funds", requiresData: false),
   ActionType(
+    name: "nft-dashboard",
+    requiresData: false,
+    hintValue: "NFT Dashboard",
+  ),
+  ActionType(
     name: "nft-add-edit-nominee",
     requiresData: true,
     hintValue: "Add/Edit Nominee",
